@@ -43,16 +43,11 @@ namespace Bombs.Core {
         }
 
         void Recycle(Recyclable recycledObj) {
-            recycledObj.SetActive(false);
-            
-            foreach (Recyclable obj in objects) {
-                if (obj == recycledObj) {
-                    obj.SetActive(false);
-                    return;
-                }
+            if (objects.Contains(recycledObj)) {
+                recycledObj.SetActive(false);
+            } else {
+                Debug.Log("Attempting to recycle foreign object");
             }
-
-            objects.Add(recycledObj);
         }
 
         public Recyclable ObjectToPool {
